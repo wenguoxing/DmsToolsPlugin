@@ -1,0 +1,129 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <id>cn.com.toyota.plugins.template</id>
+    <name>DmsToolsPlugins</name>
+    <vendor email="wenguoxing@126.com" url="https://github.com/wenguoxing">温国兴</vendor>
+
+    <depends>com.intellij.modules.platform</depends>
+
+<!--    <extensions defaultExtensionNs="com.intellij">-->
+<!--        <applicationService serviceImplementation="org.jetbrains.plugins.template.services.MyApplicationService"/>-->
+<!--        <projectService serviceImplementation="org.jetbrains.plugins.template.services.MyProjectService"/>-->
+<!--    </extensions>-->
+
+<!--    <applicationListeners>-->
+<!--        <listener class="org.jetbrains.plugins.template.listeners.MyProjectManagerListener"-->
+<!--                  topic="com.intellij.openapi.project.ProjectManagerListener"/>-->
+<!--    </applicationListeners>-->
+
+    <actions>
+        <!-- Add your actions here -->
+        <group id="PubEditorPluginDms.Menu" text="_DmsTools" description="DmsTool plugin menu">
+            <add-to-group group-id="MainMenu" anchor="last"/>
+<!--            <add-to-group group-id="MainMenu" anchor="after" relative-to-action="com.jlh.mybatis.view.MVPSupportAction" />-->
+            <action id="DmsCpTool"
+                    class="cn.bugstack.guide.idea.plugin.action.DmsCpToolAction"
+                    text="Ap-Copy"
+                    description="AP拷贝">
+            </action>
+            <action id="DmsCpToolWeb"
+                    class="cn.bugstack.guide.idea.plugin.action.DmsCpToolAction"
+                    text="Web-Copy"
+                    description="Web拷贝">
+            </action>
+            <action id="DmsCpToolBatch"
+                    class="cn.bugstack.guide.idea.plugin.action.DmsCpToolBatchAction"
+                    text="Batch-Copy"
+                    description="Batch拷贝">
+            </action>
+            <action id="DmsCpToolApBatch"
+                    class="cn.bugstack.guide.idea.plugin.action.DmsCpToolAPBatchAction"
+                    text="APBatch-Copy"
+                    description="APBatch拷贝">
+            </action>
+            <action id="DmsCpToolResourceBatch"
+                    class="cn.bugstack.guide.idea.plugin.action.DmsCpToolResourceAction"
+                    text="Resource-Copy"
+                    description="AP资源拷贝">
+            </action>
+
+            <!--   package:notification   -->
+<!--            <action id="com.kungyu.notification.HintNotificationAction"-->
+<!--                    class="com.kungyu.notification.HintNotificationAction"-->
+<!--                    text="HintNotificationAction"-->
+<!--                    description="HintNotificationAction">-->
+<!--            </action>-->
+            <!--   package:notification   -->
+
+            <!--   package:file.chooser   -->
+<!--            <action id="com.kungyu.file.chooser.FileChooserAction"-->
+<!--                    class="com.kungyu.file.chooser.FileChooserAction"-->
+<!--                    text="FileChooserAction"-->
+<!--                    description="FileChooserAction">-->
+<!--            </action>-->
+            <!--   package:file.chooser   -->
+
+            <!--   package:jblist     -->
+<!--            <action id="com.kungyu.jblist.ListAction" -->
+<!--                    class="com.kungyu.jblist.ListAction"-->
+<!--                    text="ListAction" -->
+<!--                    description="ListAction">-->
+<!--                <add-to-group group-id="MainMenu" anchor="after" relative-to-action="com.kungyu.file.chooser.FileChooserAction"/>-->
+<!--            </action>-->
+            <!--   package:jblist     -->
+
+            <!--   package:tree     -->
+<!--            <action id="com.kungyu.tree.TreeAction" class="com.kungyu.tree.TreeAction"-->
+<!--                    text="TreeAction" description="TreeAction">-->
+<!--                <add-to-group group-id="MainMenu" anchor="after" relative-to-action="com.kungyu.jblist.ListAction"/>-->
+<!--            </action>-->
+            <!--   package:tree     -->
+
+            <!--   package:jbsplitter     -->
+<!--            <action id="com.kungyu.jbsplitter.JBSplitterAction" class="com.kungyu.jbsplitter.JBSplitterAction"-->
+<!--                    text="JBSplitterAction" description="JBSplitterAction">-->
+<!--                <add-to-group group-id="MainMenu" anchor="after" relative-to-action="com.kungyu.tree.TreeAction"/>-->
+<!--            </action>-->
+            <!--   package:jbsplitter     -->
+
+            <!--   package:jbtab     -->
+<!--            <action id="com.kungyu.jbtab.JBTabAction" class="com.kungyu.jbtab.JBTabAction"-->
+<!--                    text="JBTabAction" description="JBTabAction">-->
+<!--                <add-to-group group-id="MainMenu" anchor="after" relative-to-action="com.kungyu.jbsplitter.JBSplitterAction"/>-->
+<!--            </action>-->
+            <!--   package:jbtab     -->
+
+            <!--   package:toolview-->
+<!--            <action id="com.kungyu.toolview.ConsoleViewAction" class="com.kungyu.toolview.ConsoleViewAction"-->
+<!--                    text="ConsoleViewAction" description="ConsoleViewAction">-->
+<!--                <add-to-group group-id="MainMenu" anchor="last"/>-->
+<!--            </action>-->
+            <!--   package:toolview-->
+
+        </group>
+
+        <!--    ComponentPopupAction    -->
+<!--        <action id="com.kungyu.popup.ComponentPopupAction" class="com.kungyu.popup.ComponentPopupAction"-->
+<!--                text="ComponentPopupAction" description="ComponentPopupAction">-->
+<!--            <add-to-group group-id="PopupMenuActions" anchor="first"/>-->
+<!--            <keyboard-shortcut first-keystroke="control alt 1" keymap="Mac OS X 10.5+"/>-->
+<!--        </action>-->
+        <!--    ComponentPopupAction    -->
+
+        <!--   package:editor.component     -->
+<!--        <action id="com.kungyu.editor.component.EditorIllustrationAction" class="com.kungyu.editor.component.EditorIllustrationAction"-->
+<!--                text="Editor Replace Text" description="Replaces selected text with 'Replacement'.">-->
+<!--            <add-to-group group-id="EditorPopupMenu" anchor="first"/>-->
+<!--        </action>-->
+<!--        <action id="com.kungyu.editor.component.EditorAreaIllustration" class="com.kungyu.editor.component.EditorAreaIllustration"-->
+<!--                text="Caret Position" description="Caret Position">-->
+<!--            <add-to-group group-id="EditorPopupMenu" anchor="after" relative-to-action="com.kungyu.editor.component.EditorIllustrationAction"/>-->
+<!--        </action>-->
+<!--        <action id="com.kungyu.editor.component.EditorHandlerIllustration" class="com.kungyu.editor.component.EditorHandlerIllustration"-->
+<!--                text="EditorHandlerIllustration" description="EditorHandlerIllustration">-->
+<!--            <add-to-group group-id="EditorPopupMenu" anchor="after" relative-to-action="com.kungyu.editor.component.EditorAreaIllustration"/>-->
+<!--        </action>-->
+        <!--   package:editor.component     -->
+
+    </actions>
+</idea-plugin>
