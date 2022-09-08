@@ -27,7 +27,7 @@
                     description="AP拷贝">
             </action>
             <action id="DmsCpToolWeb"
-                    class="cn.bugstack.guide.idea.plugin.action.DmsCpToolAction"
+                    class="cn.bugstack.guide.idea.plugin.action.DmsCpToolWebAction"
                     text="Web-Copy"
                     description="Web拷贝">
             </action>

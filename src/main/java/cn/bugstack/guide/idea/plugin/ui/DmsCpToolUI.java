@@ -4,6 +4,7 @@ import cn.bugstack.guide.idea.plugin.infrastructure.utils.FileUtil;
 import cn.bugstack.guide.idea.plugin.infrastructure.utils.MyBundle;
 import cn.bugstack.guide.idea.plugin.module.FileChooserComponent;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.roots.ProjectFileIndex;
 import com.intellij.openapi.ui.DialogWrapper;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.ui.ValidationInfo;
@@ -37,6 +38,7 @@ public class DmsCpToolUI extends DialogWrapper {
 
     private Project project;
     private PsiFile psiFile;
+    private VirtualFile virtualFile;
 
     private int projectType = 0;
 
@@ -59,10 +61,22 @@ public class DmsCpToolUI extends DialogWrapper {
         initOther();
     }
 
+    public DmsCpToolUI(@Nullable Project project, @Nullable PsiFile psiFile, @Nullable VirtualFile virtualFile, int projectType) {
+        super(true);
+        init();
+        this.project = project;
+        this.psiFile = psiFile;
+        this.projectType = projectType;
+        this.virtualFile = virtualFile;
+        initOther();
+    }
+
     /**
      * initOther
      */
     public void initOther(){
+
+        this.setTitleContext();
 
         MyBundle myBundle = MyBundle.getInstance();
         String iniFilePath = myBundle.getValue("INIFILEPATH");
@@ -246,7 +260,16 @@ public class DmsCpToolUI extends DialogWrapper {
             idx = srcFilePath.indexOf(srcFileName);
             String srcPath = srcFilePath.substring(0, idx - 1);
 
-            String desPath = this.textFieldSvn.getText() + "/" + Constant.APBATCHPATH + "/" + project.getName() + "/" + "src/" + srcPath;
+            ProjectFileIndex fileIndex = ProjectFileIndex.getInstance(project);
+            //Messages.showInfoMessage("Module: " + fileIndex.getModuleForFile(file) + "\n" +
+            //                "Is In Source: " + fileIndex.isInSource(file) + "\n" +
+            //                "Module content root: " + fileIndex.getContentRootForFile(file) + "\n" +
+            //                "Source root: " + fileIndex.getSourceRootForFile(file) + "\n" +
+            //                "Is library file: " + fileIndex.isLibraryClassFile(file) + "\n" +
+            //                "Is in library classes: " + fileIndex.isInLibraryClasses(file) +
+            //                ", Is in library source: " + fileIndex.isInLibrarySource(file),
+            //        "Main File Info for" + file.getName());
+            String desPath = this.textFieldSvn.getText() + "/" + Constant.APBATCHPATH + "/" + fileIndex.getModuleForFile(virtualFile) + "/" + "src/" + srcPath;
             String desFileFullPath = desPath + "/" + srcFileName;
 
             //日志
@@ -291,6 +314,7 @@ public class DmsCpToolUI extends DialogWrapper {
                 iRet = FileUtil.copyFile(srcFileFullPath, desFileFullPath);
                 if (iRet == 0) {
                     Messages.showMessageDialog(srcFileName + "复制成功","复制成功", Messages.getInformationIcon());
+                    //close(CANCEL_EXIT_CODE);
                 }
             } else {
                 Messages.showMessageDialog("创建路径出错!","复制出错", Messages.getInformationIcon());
@@ -301,13 +325,39 @@ public class DmsCpToolUI extends DialogWrapper {
     }
 
     /**
+     * setTitleContext
+     */
+    protected void setTitleContext() {
+        String title = "";
+        switch (projectType) {
+            case 0:
+                title = "AP拷贝";
+                break;
+            case 1:
+                title = "Web拷贝";
+                break;
+            case 2:
+                title = "Batch拷贝";
+                break;
+            case 3:
+                title = "ApBatch拷贝";
+                break;
+            case 4:
+                title = "Resource拷贝";
+                break;
+        }
+
+        setTitle(title);
+    }
+
+    /**
      * 覆盖默认的ok/cancel按钮
      * @return
      */
     @NotNull
     @Override
     protected Action[] createActions() {
-        exitAction = new DialogWrapperExitAction("Cancel", CANCEL_EXIT_CODE);
+        exitAction = new DialogWrapperExitAction("取消", CANCEL_EXIT_CODE);
         okAction = new CustomOKAction();
         // 设置默认的焦点按钮
         okAction.putValue(DialogWrapper.DEFAULT_ACTION, true);
@@ -320,7 +370,7 @@ public class DmsCpToolUI extends DialogWrapper {
     protected class CustomOKAction extends DialogWrapperAction {
 
         protected CustomOKAction() {
-            super("OK");
+            super("确定");
         }
 
         @Override
@@ -342,6 +392,8 @@ public class DmsCpToolUI extends DialogWrapper {
                     doCopyResource();
                     break;
             }
+
+            close(CANCEL_EXIT_CODE);
         }
     }
 }
