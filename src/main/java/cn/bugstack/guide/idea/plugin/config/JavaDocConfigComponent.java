@@ -1,7 +1,6 @@
 package cn.bugstack.guide.idea.plugin.config;
 
-import cn.bugstack.guide.idea.plugin.ui.JavaDocConfiguration;
-import cn.bugstack.guide.idea.plugin.ui.JavaDocConfiguration.TemplateConfig;
+import cn.bugstack.guide.idea.plugin.config.JavaDocConfiguration.TemplateConfig;
 import com.intellij.openapi.components.PersistentStateComponent;
 import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
@@ -36,7 +35,7 @@ public class JavaDocConfigComponent implements PersistentStateComponent<JavaDocC
             configuration.setSimpleFieldDoc(true);
             configuration.setMethodReturnType(JavaDocConfiguration.LINK_RETURN_TYPE);
             configuration.setWordMap(new TreeMap<>());
-            configuration.setTranslator(Consts.YOUDAO_TRANSLATOR);
+            configuration.setTranslator(JavaDocConstant.YOUDAO_TRANSLATOR);
             configuration.setClassTemplateConfig(new TemplateConfig());
             configuration.setMethodTemplateConfig(new TemplateConfig());
             configuration.setFieldTemplateConfig(new TemplateConfig());

@@ -1,6 +1,6 @@
-package cn.bugstack.guide.idea.plugin.variable.impl;
+package cn.bugstack.guide.idea.plugin.service.impl;
 
-import cn.bugstack.guide.idea.plugin.variable.VariableGenerator;
+import cn.bugstack.guide.idea.plugin.service.VariableGenerator;
 import com.intellij.psi.PsiClassType;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiMethod;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * @author <a href="mailto:wenguoxing.star@gmail.com">wenguoxing</a>
+ * @author <a href="mailto:wenguoxing@126.com">wenguoxing</a>
  * @version 1.0.0
  * @since 2019-12-07 23:18:00
  */

@@ -15,25 +15,34 @@
     </description>
 
     <change-notes><![CDATA[
-        <h3>v1.2.1 update</h3>
+        <h3>v1.3.0 update</h3>
         <ul>
             <li>add @link label in @return doc of the method javadoc</li>
             <li>添加一些功能.</li>
         </ul>
         <h3>v1.2.0 first version</h3>
         <ul>
-            <li>实始提交.</li>
+            <li>初始提交.</li>
         </ul>
         <a href="https://github.com/wenguoxing">source code and document</a><br>
         ]]>
     </change-notes>
 
-    <depends>com.intellij.modules.platform</depends>
+<!--    <depends>com.intellij.modules.platform</depends>-->
+    <depends>com.intellij.modules.java</depends>
 
-<!--    <extensions defaultExtensionNs="com.intellij">-->
-<!--        <applicationService serviceImplementation="org.jetbrains.plugins.template.services.MyApplicationService"/>-->
-<!--        <projectService serviceImplementation="org.jetbrains.plugins.template.services.MyProjectService"/>-->
-<!--    </extensions>-->
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <applicationService serviceImplementation="cn.bugstack.guide.idea.plugin.config.JavaDocConfigComponent" order="first"/>
+        <applicationService serviceImplementation="cn.bugstack.guide.idea.plugin.service.DocGeneratorService"/>
+        <applicationService serviceImplementation="cn.bugstack.guide.idea.plugin.service.WriterService"/>
+        <applicationService serviceImplementation="cn.bugstack.guide.idea.plugin.service.VariableGeneratorService"/>
+        <applicationConfigurable displayName="DmsJavaDoc" instance="cn.bugstack.guide.idea.plugin.ui.CommonConfigurable">
+            <configurable instance="cn.bugstack.guide.idea.plugin.ui.template.ClassConfigurable"/>
+            <configurable instance="cn.bugstack.guide.idea.plugin.ui.template.MethodConfigurable"/>
+            <configurable instance="cn.bugstack.guide.idea.plugin.ui.template.FieldConfigurable"/>
+        </applicationConfigurable>
+    </extensions>
 
 <!--    <applicationListeners>-->
 <!--        <listener class="org.jetbrains.plugins.template.listeners.MyProjectManagerListener"-->
@@ -68,6 +77,15 @@
                 description="AP资源拷贝">
         </action>
 
+        <action id="JavaDocGenerator" class="cn.bugstack.guide.idea.plugin.action.JavadocGenerateAction" text="JavaDocGenerate"
+                description="JavaDocGenerate">
+            <keyboard-shortcut keymap="Mac OS X" first-keystroke="meta BACK_SLASH"/>
+            <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="meta BACK_SLASH"/>
+            <keyboard-shortcut keymap="Default for XWin" first-keystroke="ctrl BACK_SLASH"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="meta BACK_SLASH"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl BACK_SLASH"/>
+        </action>
+
         <!-- Add your actions here -->
         <!--            <add-to-group group-id="MainMenu" anchor="after" relative-to-action="com.jlh.mybatis.view.MVPSupportAction" />-->
 
@@ -78,6 +96,10 @@
             <reference ref="DmsCpToolBatch"/>
             <reference ref="DmsCpToolApBatch"/>
             <reference ref="DmsCpToolResourceBatch"/>
+            <separator text="*  JavaDocGenerator"/>
+            <group id="PubEditorPluginDms.Menu.Other" popup="true" text="Other">
+                <reference ref="JavaDocGenerator"/>
+            </group>
         </group>
 
         <group id="dmstool-plugin" popup="true" text="DmsTools">
@@ -90,6 +112,10 @@
             <reference ref="DmsCpToolBatch"/>
             <reference ref="DmsCpToolApBatch"/>
             <reference ref="DmsCpToolResourceBatch"/>
+            <separator/>
+            <group id="dmstool-plugin-other" popup="true" text="Other">
+                <reference ref="JavaDocGenerator"/>
+            </group>
         </group>
 
 <!--   package:notification   -->

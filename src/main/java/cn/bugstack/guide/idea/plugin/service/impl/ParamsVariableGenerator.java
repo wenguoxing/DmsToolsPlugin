@@ -1,6 +1,6 @@
-package cn.bugstack.guide.idea.plugin.variable.impl;
+package cn.bugstack.guide.idea.plugin.service.impl;
 
-import cn.bugstack.guide.idea.plugin.variable.VariableGenerator;
+import cn.bugstack.guide.idea.plugin.service.VariableGenerator;
 import com.google.common.collect.Lists;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiMethod;
@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * @author <a href="mailto:wenguoxing.star@gmail.com">wenguoxing</a>
+ * @author <a href="mailto:wenguoxing@126.com">wenguoxing</a>
  * @version 1.0.0
  * @since 2019-12-07 23:18:00
  */
@@ -57,7 +57,7 @@ public class ParamsVariableGenerator implements VariableGenerator {
             PsiElement eleParamDesc = psiDocTag.getDataElements()[1];
             String desc = eleParamDesc.getText();
             if (StringUtils.isNotEmpty(desc)) {
-                // 如果已经存在注释则直接返回
+                // 如果已经存在注释则直接返�?
                 paramGroupList.add(new ParamGroup(paramName, desc));
             } else {
                 // 不存在注释则翻译
@@ -78,7 +78,7 @@ public class ParamsVariableGenerator implements VariableGenerator {
     }
 
     /**
-     * 参数名注释组合
+     * 参数名注释组�?
      */
     static class ParamGroup {
         private String param;

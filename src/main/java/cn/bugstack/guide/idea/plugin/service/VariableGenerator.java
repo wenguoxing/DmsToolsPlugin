@@ -1,4 +1,4 @@
-package cn.bugstack.guide.idea.plugin.variable;
+package cn.bugstack.guide.idea.plugin.service;
 
 import com.intellij.psi.PsiElement;
 

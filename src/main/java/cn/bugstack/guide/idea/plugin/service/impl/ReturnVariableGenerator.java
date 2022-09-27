@@ -1,15 +1,15 @@
-package cn.bugstack.guide.idea.plugin.variable.impl;
+package cn.bugstack.guide.idea.plugin.service.impl;
 
-import cn.bugstack.guide.idea.plugin.config.Consts;
+import cn.bugstack.guide.idea.plugin.config.JavaDocConstant;
 import cn.bugstack.guide.idea.plugin.config.JavaDocConfigComponent;
-import cn.bugstack.guide.idea.plugin.variable.VariableGenerator;
-import cn.bugstack.guide.idea.plugin.ui.JavaDocConfiguration;
+import cn.bugstack.guide.idea.plugin.service.VariableGenerator;
+import cn.bugstack.guide.idea.plugin.config.JavaDocConfiguration;
 import com.intellij.openapi.components.ServiceManager;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiMethod;
 
 /**
- * @author <a href="mailto:wenguoxing.star@gmail.com">wenguoxing</a>
+ * @author <a href="mailto:wenguoxing@126.com">wenguoxing</a>
  * @version 1.0.0
  * @since 2019-12-07 23:18:00
  */
@@ -25,7 +25,7 @@ public class ReturnVariableGenerator implements VariableGenerator {
         PsiMethod psiMethod = (PsiMethod)element;
         String returnName = psiMethod.getReturnTypeElement() == null ? "" : psiMethod.getReturnTypeElement().getText();
 
-        if (Consts.BASE_TYPE_SET.contains(returnName)) {
+        if (JavaDocConstant.BASE_TYPE_SET.contains(returnName)) {
             return "@return " + returnName;
         } else if ("void".equalsIgnoreCase(returnName)) {
             return "";

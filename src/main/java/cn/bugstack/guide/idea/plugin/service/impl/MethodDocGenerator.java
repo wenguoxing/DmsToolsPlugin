@@ -1,9 +1,9 @@
 package cn.bugstack.guide.idea.plugin.service.impl;
 
-import cn.bugstack.guide.idea.plugin.config.Consts;
+import cn.bugstack.guide.idea.plugin.config.JavaDocConstant;
 import cn.bugstack.guide.idea.plugin.config.JavaDocConfigComponent;
 import cn.bugstack.guide.idea.plugin.service.DocGenerator;
-import cn.bugstack.guide.idea.plugin.ui.JavaDocConfiguration;
+import cn.bugstack.guide.idea.plugin.config.JavaDocConfiguration;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 import com.intellij.openapi.components.ServiceManager;
@@ -103,7 +103,7 @@ public class MethodDocGenerator implements DocGenerator {
             sb.append("* @param ").append(paramName).append(" ").append(paramName).append("\n");
         }
         if (returnName.length() > 0 && !"void".equals(returnName)) {
-            if (Consts.BASE_TYPE_SET.contains(returnName)) {
+            if (JavaDocConstant.BASE_TYPE_SET.contains(returnName)) {
                 sb.append("* @return ").append(returnName).append("\n");
             } else {
                 if (config.isCodeMethodReturnType()) {
@@ -215,7 +215,7 @@ public class MethodDocGenerator implements DocGenerator {
             }
         }
         if (isInsert && returnName.length() > 0 && !"void".equals(returnName)) {
-            if (Consts.BASE_TYPE_SET.contains(returnName)) {
+            if (JavaDocConstant.BASE_TYPE_SET.contains(returnName)) {
                 return "@return " + returnName + "\n";
             } else {
                 if (config.isCodeMethodReturnType()) {

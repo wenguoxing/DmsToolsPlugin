@@ -1,5 +1,6 @@
 package cn.bugstack.guide.idea.plugin.ui;
 
+import cn.bugstack.guide.idea.plugin.config.DmsToolsConstant;
 import cn.bugstack.guide.idea.plugin.infrastructure.utils.FileUtil;
 import cn.bugstack.guide.idea.plugin.infrastructure.utils.MyBundle;
 import cn.bugstack.guide.idea.plugin.module.FileChooserComponent;
@@ -153,12 +154,12 @@ public class DmsCpToolUI extends DialogWrapper {
             String srcFileName = psiFile.getVirtualFile().getName();
 
             //去掉当前项目的路径
-            int idx = srcFileFullPath.indexOf(Constant.PROPATH);
-            String srcFilePath = srcFileFullPath.substring(idx + Constant.PROPATH.length());
+            int idx = srcFileFullPath.indexOf(DmsToolsConstant.PROPATH);
+            String srcFilePath = srcFileFullPath.substring(idx + DmsToolsConstant.PROPATH.length());
             idx = srcFilePath.indexOf(srcFileName);
             String srcPath = srcFilePath.substring(0, idx - 1);
 
-            String desPath = this.textFieldSvn.getText() + "/" + Constant.APPATH + "/" + srcPath;
+            String desPath = this.textFieldSvn.getText() + "/" + DmsToolsConstant.APPATH + "/" + srcPath;
             String desFileFullPath = desPath + "/" + srcFileName;
 
             //日志
@@ -187,12 +188,12 @@ public class DmsCpToolUI extends DialogWrapper {
             String srcFileName = psiFile.getVirtualFile().getName();
 
             //去掉当前项目的路径
-            int idx = srcFileFullPath.indexOf(Constant.PROWEBPATH);
-            String srcFilePath = srcFileFullPath.substring(idx + Constant.PROWEBPATH.length());
+            int idx = srcFileFullPath.indexOf(DmsToolsConstant.PROWEBPATH);
+            String srcFilePath = srcFileFullPath.substring(idx + DmsToolsConstant.PROWEBPATH.length());
             idx = srcFilePath.indexOf(srcFileName);
             String srcPath = srcFilePath.substring(0, idx - 1);
 
-            String desPath = this.textFieldSvn.getText() + "/" + Constant.WEBPATH + "/" + srcPath;
+            String desPath = this.textFieldSvn.getText() + "/" + DmsToolsConstant.WEBPATH + "/" + srcPath;
             String desFileFullPath = desPath + "/" + srcFileName;
 
             //日志
@@ -221,12 +222,12 @@ public class DmsCpToolUI extends DialogWrapper {
             String srcFileName = psiFile.getVirtualFile().getName();
 
             //去掉当前项目的路径
-            int idx = srcFileFullPath.indexOf(Constant.PROPATH);
-            String srcFilePath = srcFileFullPath.substring(idx + Constant.PROPATH.length());
+            int idx = srcFileFullPath.indexOf(DmsToolsConstant.PROPATH);
+            String srcFilePath = srcFileFullPath.substring(idx + DmsToolsConstant.PROPATH.length());
             idx = srcFilePath.indexOf(srcFileName);
             String srcPath = srcFilePath.substring(0, idx - 1);
 
-            String desPath = this.textFieldSvn.getText() + "/" + Constant.DBBATCHPATH + "/" + srcPath;
+            String desPath = this.textFieldSvn.getText() + "/" + DmsToolsConstant.DBBATCHPATH + "/" + srcPath;
             String desFileFullPath = desPath + "/" + srcFileName;
 
             //日志
@@ -255,8 +256,8 @@ public class DmsCpToolUI extends DialogWrapper {
             String srcFileName = psiFile.getVirtualFile().getName();
 
             //去掉当前项目的路径
-            int idx = srcFileFullPath.indexOf(Constant.PROPATH);
-            String srcFilePath = srcFileFullPath.substring(idx + Constant.PROPATH.length());
+            int idx = srcFileFullPath.indexOf(DmsToolsConstant.PROPATH);
+            String srcFilePath = srcFileFullPath.substring(idx + DmsToolsConstant.PROPATH.length());
             idx = srcFilePath.indexOf(srcFileName);
             String srcPath = srcFilePath.substring(0, idx - 1);
 
@@ -269,7 +270,7 @@ public class DmsCpToolUI extends DialogWrapper {
             //                "Is in library classes: " + fileIndex.isInLibraryClasses(file) +
             //                ", Is in library source: " + fileIndex.isInLibrarySource(file),
             //        "Main File Info for" + file.getName());
-            String desPath = this.textFieldSvn.getText() + "/" + Constant.APBATCHPATH + "/" + fileIndex.getModuleForFile(virtualFile).getName() + "/" + "src/" + srcPath;
+            String desPath = this.textFieldSvn.getText() + "/" + DmsToolsConstant.APBATCHPATH + "/" + fileIndex.getModuleForFile(virtualFile).getName() + "/" + "src/" + srcPath;
             String desFileFullPath = desPath + "/" + srcFileName;
 
             //日志
@@ -298,12 +299,12 @@ public class DmsCpToolUI extends DialogWrapper {
             String srcFileName = psiFile.getVirtualFile().getName();
 
             //去掉当前项目的路径
-            int idx = srcFileFullPath.indexOf(Constant.PRORESOURCEPATH);
-            String srcFilePath = srcFileFullPath.substring(idx + Constant.PRORESOURCEPATH.length());
+            int idx = srcFileFullPath.indexOf(DmsToolsConstant.PRORESOURCEPATH);
+            String srcFilePath = srcFileFullPath.substring(idx + DmsToolsConstant.PRORESOURCEPATH.length());
             idx = srcFilePath.indexOf(srcFileName);
             String srcPath = srcFilePath.substring(0, idx - 1);
 
-            String desPath = this.textFieldSvn.getText() + "/" + Constant.RESOURCEPATH + "/" + srcPath;
+            String desPath = this.textFieldSvn.getText() + "/" + DmsToolsConstant.RESOURCEPATH + "/" + srcPath;
             String desFileFullPath = desPath + "/" + srcFileName;
 
             //日志

@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/src/main/java/cn/bugstack/guide/idea/plugin/service/impl/DateVariableGenerator.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/cn/bugstack/guide/idea/plugin/ui/inner/CustomTemplateAddView.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/cn/bugstack/guide/idea/plugin/ui/template/AbstractTemplateConfigView.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/cn/bugstack/guide/idea/plugin/ui/template/ClassConfigurable.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/cn/bugstack/guide/idea/plugin/ui/template/FieldConfigView.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/cn/bugstack/guide/idea/plugin/ui/template/FieldConfigurable.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/cn/bugstack/guide/idea/plugin/ui/template/MethodConfigView.java" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

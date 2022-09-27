@@ -1,4 +1,4 @@
-package cn.bugstack.guide.idea.plugin.ui;
+package cn.bugstack.guide.idea.plugin.config;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -28,7 +28,7 @@ public class JavaDocConfiguration {
     /**
      * 作者
      */
-    private String author = "admin";
+    private String author = "wenguoxing";
     /**
      * 日期格式
      */
@@ -97,7 +97,7 @@ public class JavaDocConfiguration {
     private Boolean genAllInnerClass;
 
     public void reset() {
-        author = "admin";
+        author = "wenguoxing";
         dateFormat = "yyyy/MM/dd";
         simpleFieldDoc = false;
         translator = "有道翻译";

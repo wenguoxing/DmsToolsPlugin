@@ -10,7 +10,7 @@ import java.util.Set;
  * @Date: 2022/9/26 17:40
  * @Version 1.0
  */
-public class Consts {
+public class JavaDocConstant {
 
     /**
      * 基础类型集
@@ -21,8 +21,8 @@ public class Consts {
     public static final Set<String> STOP_WORDS = Sets.newHashSet("the");
 
     /** 可用翻译设置 */
-    public static final Set<String> ENABLE_TRANSLATOR_SET = ImmutableSet.of(Consts.YOUDAO_TRANSLATOR,
-            Consts.BAIDU_TRANSLATOR, Consts.TENCENT_TRANSLATOR, Consts.ALIYUN_TRANSLATOR, Consts.CLOSE_TRANSLATOR);
+    public static final Set<String> ENABLE_TRANSLATOR_SET = ImmutableSet.of(JavaDocConstant.YOUDAO_TRANSLATOR,
+            JavaDocConstant.BAIDU_TRANSLATOR, JavaDocConstant.TENCENT_TRANSLATOR, JavaDocConstant.ALIYUN_TRANSLATOR, JavaDocConstant.CLOSE_TRANSLATOR);
 
     /**
      * 腾讯翻译
@@ -52,6 +52,6 @@ public class Consts {
     /**
      * 构造函数
      */
-    public Consts() {
+    public JavaDocConstant() {
     }
 }

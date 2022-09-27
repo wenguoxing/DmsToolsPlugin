@@ -1,11 +1,11 @@
-package cn.bugstack.guide.idea.plugin.ui;
+package cn.bugstack.guide.idea.plugin.config;
 
 /**
  * @Author: wenguoxing
  * @Date: 2022/9/8 8:28
  * @Version 1.0
  */
-public class Constant {
+public class DmsToolsConstant {
 
     public static final String APPATH = "00 FTMSnewPF_AP_CDIST/SMSAPLInterfaceTest_ZX_CDIST/IZJava/src";
     public static final String WEBPATH = "00 FTMSnewPF_AP_CDIST/SMSAPLInterfaceTest_ZX_CDIST/IZWeb/WebContent";
@@ -18,6 +18,6 @@ public class Constant {
     /**
      * 构造函数
      */
-    public Constant() {
+    public DmsToolsConstant() {
     }
 }
