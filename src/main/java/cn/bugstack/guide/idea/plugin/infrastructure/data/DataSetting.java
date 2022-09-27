@@ -1,6 +1,6 @@
 package cn.bugstack.guide.idea.plugin.infrastructure.data;
 
-import cn.bugstack.guide.idea.plugin.domain.model.vo.ORMConfigVO;
+import cn.bugstack.guide.idea.plugin.model.vo.ORMConfigVO;
 import com.intellij.openapi.components.PersistentStateComponent;
 import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.components.State;

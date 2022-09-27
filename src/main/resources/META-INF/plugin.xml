@@ -4,6 +4,30 @@
     <name>DmsToolsPlugins</name>
     <vendor email="wenguoxing@126.com" url="https://github.com/wenguoxing">温国兴</vendor>
 
+    <description><![CDATA[
+        This plugin is study for Dms.<br>
+        Support Ap-java,Ap-jsp,Ap-properties,Batch-java,ApBatch-java etc.<br>
+        <a href="https://github.com/wenguoxing">source code and document</a><br>
+        <p>
+            能帮助Dms开发者快速开发
+        </p>
+        ]]>
+    </description>
+
+    <change-notes><![CDATA[
+        <h3>v1.2.1 update</h3>
+        <ul>
+            <li>add @link label in @return doc of the method javadoc</li>
+            <li>添加一些功能.</li>
+        </ul>
+        <h3>v1.2.0 first version</h3>
+        <ul>
+            <li>实始提交.</li>
+        </ul>
+        <a href="https://github.com/wenguoxing">source code and document</a><br>
+        ]]>
+    </change-notes>
+
     <depends>com.intellij.modules.platform</depends>
 
 <!--    <extensions defaultExtensionNs="com.intellij">-->
@@ -17,90 +41,109 @@
 <!--    </applicationListeners>-->
 
     <actions>
+
+        <action id="DmsCpTool"
+                class="cn.bugstack.guide.idea.plugin.action.DmsCpToolAction"
+                text="Ap-Copy"
+                description="AP拷贝">
+        </action>
+        <action id="DmsCpToolWeb"
+                class="cn.bugstack.guide.idea.plugin.action.DmsCpToolWebAction"
+                text="Web-Copy"
+                description="Web拷贝">
+        </action>
+        <action id="DmsCpToolBatch"
+                class="cn.bugstack.guide.idea.plugin.action.DmsCpToolBatchAction"
+                text="Batch-Copy"
+                description="Batch拷贝">
+        </action>
+        <action id="DmsCpToolApBatch"
+                class="cn.bugstack.guide.idea.plugin.action.DmsCpToolAPBatchAction"
+                text="APBatch-Copy"
+                description="APBatch拷贝">
+        </action>
+        <action id="DmsCpToolResourceBatch"
+                class="cn.bugstack.guide.idea.plugin.action.DmsCpToolResourceAction"
+                text="Resource-Copy"
+                description="AP资源拷贝">
+        </action>
+
         <!-- Add your actions here -->
+        <!--            <add-to-group group-id="MainMenu" anchor="after" relative-to-action="com.jlh.mybatis.view.MVPSupportAction" />-->
+
         <group id="PubEditorPluginDms.Menu" text="_DmsTools" description="DmsTool plugin menu">
             <add-to-group group-id="MainMenu" anchor="last"/>
-<!--            <add-to-group group-id="MainMenu" anchor="after" relative-to-action="com.jlh.mybatis.view.MVPSupportAction" />-->
-            <action id="DmsCpTool"
-                    class="cn.bugstack.guide.idea.plugin.action.DmsCpToolAction"
-                    text="Ap-Copy"
-                    description="AP拷贝">
-            </action>
-            <action id="DmsCpToolWeb"
-                    class="cn.bugstack.guide.idea.plugin.action.DmsCpToolWebAction"
-                    text="Web-Copy"
-                    description="Web拷贝">
-            </action>
-            <action id="DmsCpToolBatch"
-                    class="cn.bugstack.guide.idea.plugin.action.DmsCpToolBatchAction"
-                    text="Batch-Copy"
-                    description="Batch拷贝">
-            </action>
-            <action id="DmsCpToolApBatch"
-                    class="cn.bugstack.guide.idea.plugin.action.DmsCpToolAPBatchAction"
-                    text="APBatch-Copy"
-                    description="APBatch拷贝">
-            </action>
-            <action id="DmsCpToolResourceBatch"
-                    class="cn.bugstack.guide.idea.plugin.action.DmsCpToolResourceAction"
-                    text="Resource-Copy"
-                    description="AP资源拷贝">
-            </action>
+            <reference ref="DmsCpTool"/>
+            <reference ref="DmsCpToolWeb"/>
+            <reference ref="DmsCpToolBatch"/>
+            <reference ref="DmsCpToolApBatch"/>
+            <reference ref="DmsCpToolResourceBatch"/>
+        </group>
 
-            <!--   package:notification   -->
+        <group id="dmstool-plugin" popup="true" text="DmsTools">
+            <add-to-group group-id="EditorPopupMenu" anchor="before" relative-to-action="$Paste"/>
+            <!--            右键到文件夹区的处理-->
+            <add-to-group group-id="CutCopyPasteGroup" anchor="before" relative-to-action="$Paste"/>
+            <separator/>
+            <reference ref="DmsCpTool"/>
+            <reference ref="DmsCpToolWeb"/>
+            <reference ref="DmsCpToolBatch"/>
+            <reference ref="DmsCpToolApBatch"/>
+            <reference ref="DmsCpToolResourceBatch"/>
+        </group>
+
+<!--   package:notification   -->
 <!--            <action id="com.kungyu.notification.HintNotificationAction"-->
 <!--                    class="com.kungyu.notification.HintNotificationAction"-->
 <!--                    text="HintNotificationAction"-->
 <!--                    description="HintNotificationAction">-->
 <!--            </action>-->
-            <!--   package:notification   -->
+<!--   package:notification   -->
 
-            <!--   package:file.chooser   -->
+<!--   package:file.chooser   -->
 <!--            <action id="com.kungyu.file.chooser.FileChooserAction"-->
 <!--                    class="com.kungyu.file.chooser.FileChooserAction"-->
 <!--                    text="FileChooserAction"-->
 <!--                    description="FileChooserAction">-->
 <!--            </action>-->
-            <!--   package:file.chooser   -->
+<!--   package:file.chooser   -->
 
-            <!--   package:jblist     -->
+<!--   package:jblist     -->
 <!--            <action id="com.kungyu.jblist.ListAction" -->
 <!--                    class="com.kungyu.jblist.ListAction"-->
 <!--                    text="ListAction" -->
 <!--                    description="ListAction">-->
 <!--                <add-to-group group-id="MainMenu" anchor="after" relative-to-action="com.kungyu.file.chooser.FileChooserAction"/>-->
 <!--            </action>-->
-            <!--   package:jblist     -->
+<!--   package:jblist     -->
 
-            <!--   package:tree     -->
+<!--   package:tree     -->
 <!--            <action id="com.kungyu.tree.TreeAction" class="com.kungyu.tree.TreeAction"-->
 <!--                    text="TreeAction" description="TreeAction">-->
 <!--                <add-to-group group-id="MainMenu" anchor="after" relative-to-action="com.kungyu.jblist.ListAction"/>-->
 <!--            </action>-->
-            <!--   package:tree     -->
+<!--   package:tree     -->
 
-            <!--   package:jbsplitter     -->
+<!--   package:jbsplitter     -->
 <!--            <action id="com.kungyu.jbsplitter.JBSplitterAction" class="com.kungyu.jbsplitter.JBSplitterAction"-->
 <!--                    text="JBSplitterAction" description="JBSplitterAction">-->
 <!--                <add-to-group group-id="MainMenu" anchor="after" relative-to-action="com.kungyu.tree.TreeAction"/>-->
 <!--            </action>-->
-            <!--   package:jbsplitter     -->
+<!--   package:jbsplitter     -->
 
-            <!--   package:jbtab     -->
+<!--   package:jbtab     -->
 <!--            <action id="com.kungyu.jbtab.JBTabAction" class="com.kungyu.jbtab.JBTabAction"-->
 <!--                    text="JBTabAction" description="JBTabAction">-->
 <!--                <add-to-group group-id="MainMenu" anchor="after" relative-to-action="com.kungyu.jbsplitter.JBSplitterAction"/>-->
 <!--            </action>-->
-            <!--   package:jbtab     -->
+<!--   package:jbtab     -->
 
-            <!--   package:toolview-->
+<!--   package:toolview-->
 <!--            <action id="com.kungyu.toolview.ConsoleViewAction" class="com.kungyu.toolview.ConsoleViewAction"-->
 <!--                    text="ConsoleViewAction" description="ConsoleViewAction">-->
 <!--                <add-to-group group-id="MainMenu" anchor="last"/>-->
 <!--            </action>-->
-            <!--   package:toolview-->
-
-        </group>
+<!--   package:toolview-->
 
         <!--    ComponentPopupAction    -->
 <!--        <action id="com.kungyu.popup.ComponentPopupAction" class="com.kungyu.popup.ComponentPopupAction"-->

@@ -1,4 +1,4 @@
-package cn.bugstack.guide.idea.plugin;
+package cn.bugstack.guide.idea.plugin.action;
 
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;

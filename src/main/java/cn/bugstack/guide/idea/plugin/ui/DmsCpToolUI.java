@@ -269,7 +269,7 @@ public class DmsCpToolUI extends DialogWrapper {
             //                "Is in library classes: " + fileIndex.isInLibraryClasses(file) +
             //                ", Is in library source: " + fileIndex.isInLibrarySource(file),
             //        "Main File Info for" + file.getName());
-            String desPath = this.textFieldSvn.getText() + "/" + Constant.APBATCHPATH + "/" + fileIndex.getModuleForFile(virtualFile) + "/" + "src/" + srcPath;
+            String desPath = this.textFieldSvn.getText() + "/" + Constant.APBATCHPATH + "/" + fileIndex.getModuleForFile(virtualFile).getName() + "/" + "src/" + srcPath;
             String desFileFullPath = desPath + "/" + srcFileName;
 
             //日志

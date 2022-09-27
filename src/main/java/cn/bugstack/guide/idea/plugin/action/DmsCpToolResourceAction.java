@@ -1,7 +1,7 @@
 package cn.bugstack.guide.idea.plugin.action;
 
-import cn.bugstack.guide.idea.plugin.domain.service.IProjectGenerator;
-import cn.bugstack.guide.idea.plugin.domain.service.impl.ProjectGeneratorImpl;
+import cn.bugstack.guide.idea.plugin.service.IProjectGenerator;
+import cn.bugstack.guide.idea.plugin.service.impl.ProjectGeneratorImpl;
 import cn.bugstack.guide.idea.plugin.ui.DmsCpToolUI;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;

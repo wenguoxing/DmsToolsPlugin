@@ -1,6 +1,6 @@
 package cn.bugstack.guide.idea.plugin.infrastructure.data;
 
-import cn.bugstack.guide.idea.plugin.domain.model.vo.ORMConfigVO;
+import cn.bugstack.guide.idea.plugin.model.vo.ORMConfigVO;
 
 /**
  * @author: 小傅哥，微信：fustack

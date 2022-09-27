@@ -1,8 +1,8 @@
 package cn.bugstack.guide.idea.plugin.ui;
 
-import cn.bugstack.guide.idea.plugin.domain.model.vo.CodeGenContextVO;
-import cn.bugstack.guide.idea.plugin.domain.model.vo.ORMConfigVO;
-import cn.bugstack.guide.idea.plugin.domain.service.IProjectGenerator;
+import cn.bugstack.guide.idea.plugin.model.vo.CodeGenContextVO;
+import cn.bugstack.guide.idea.plugin.model.vo.ORMConfigVO;
+import cn.bugstack.guide.idea.plugin.service.IProjectGenerator;
 import cn.bugstack.guide.idea.plugin.infrastructure.data.DataSetting;
 import cn.bugstack.guide.idea.plugin.infrastructure.po.Table;
 import cn.bugstack.guide.idea.plugin.infrastructure.utils.DBHelper;

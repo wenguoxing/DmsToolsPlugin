@@ -1,7 +1,7 @@
-package cn.bugstack.guide.idea.plugin.domain.service.impl;
+package cn.bugstack.guide.idea.plugin.service.impl;
 
-import cn.bugstack.guide.idea.plugin.domain.model.vo.CodeGenContextVO;
-import cn.bugstack.guide.idea.plugin.domain.service.AbstractProjectGenerator;
+import cn.bugstack.guide.idea.plugin.model.vo.CodeGenContextVO;
+import cn.bugstack.guide.idea.plugin.service.AbstractProjectGenerator;
 import cn.bugstack.guide.idea.plugin.infrastructure.po.*;
 import cn.bugstack.guide.idea.plugin.infrastructure.utils.JavaType;
 import com.google.common.base.CaseFormat;

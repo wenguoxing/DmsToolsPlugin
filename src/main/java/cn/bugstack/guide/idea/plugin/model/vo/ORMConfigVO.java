@@ -1,4 +1,4 @@
-package cn.bugstack.guide.idea.plugin.domain.model.vo;
+package cn.bugstack.guide.idea.plugin.model.vo;
 
 import java.util.LinkedHashSet;
 import java.util.Set;

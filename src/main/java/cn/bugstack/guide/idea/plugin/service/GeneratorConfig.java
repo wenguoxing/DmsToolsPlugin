@@ -1,4 +1,4 @@
-package cn.bugstack.guide.idea.plugin.domain.service;
+package cn.bugstack.guide.idea.plugin.service;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;

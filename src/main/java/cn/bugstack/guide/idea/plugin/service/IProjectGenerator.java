@@ -1,6 +1,6 @@
-package cn.bugstack.guide.idea.plugin.domain.service;
+package cn.bugstack.guide.idea.plugin.service;
 
-import cn.bugstack.guide.idea.plugin.domain.model.vo.CodeGenContextVO;
+import cn.bugstack.guide.idea.plugin.model.vo.CodeGenContextVO;
 import com.intellij.openapi.project.Project;
 
 /**
