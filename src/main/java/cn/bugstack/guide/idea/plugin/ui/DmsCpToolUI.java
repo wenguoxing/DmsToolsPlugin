@@ -16,6 +16,8 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.IOException;
 import java.util.List;
 
@@ -31,6 +33,8 @@ public class DmsCpToolUI extends DialogWrapper {
     private JTextField textFieldIniFile;
     private JButton btnSelect;
     private JButton btnFileSelect;
+    private JComboBox comboBoxSvn;
+    private JLabel labAllSvn;
 
     private DefaultListModel listModel;
 
@@ -86,6 +90,9 @@ public class DmsCpToolUI extends DialogWrapper {
             List<String> datas = FileUtil.queryData(iniFilePath);
             this.listShow.setListData(datas.toArray());
             this.textFieldSvn.setText(datas.get(projectType));
+
+            //去重填充下拉框
+            datas.stream().distinct().forEach(p -> this.comboBoxSvn.addItem(p));
         }
 
         this.textFieldProject.setText(project.getBasePath());
@@ -116,10 +123,39 @@ public class DmsCpToolUI extends DialogWrapper {
                 List<String> datas = FileUtil.queryData(fileName);
                 this.listShow.setListData(datas.toArray());
                 this.textFieldSvn.setText(datas.get(projectType));
+
+                //去重填充下拉框
+                datas.stream().distinct().forEach(p -> this.comboBoxSvn.addItem(p));
+
             } else {
-                Messages.showMessageDialog("文件名称为空", "文件名称为空", Messages.getInformationIcon());
+                //Messages.showMessageDialog("文件名称为空", "文件名称为空", Messages.getInformationIcon());
             }
         });
+
+        // 添加条目选中状态改变的监听器
+        //comboBoxSvn.addItemListener(e -> {
+        //    // 只处理选中的状态
+        //    if (e.getStateChange() == ItemEvent.SELECTED) {
+        //        System.out.println("选中: " + e.getID() + " = " + e.getSource().toString());
+        //        System.out.println("选中: " + e.getItem().toString() + " = " + e.getItemSelectable().getSelectedObjects());
+        //        System.out.println("选中: " + comboBoxSvn.getSelectedIndex() + " = " + comboBoxSvn.getSelectedItem());
+        //    }
+        //});
+
+        // 添加条目选中状态改变的监听器
+        comboBoxSvn.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                // 只处理选中的状态
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    //System.out.println("选中: " + comboBoxSvn.getSelectedIndex() + " = " + comboBoxSvn.getSelectedItem());
+                    textFieldSvn.setText(comboBoxSvn.getSelectedItem().toString());
+                }
+            }
+        });
+
+        // 设置默认选中的条目
+        //comboBoxSvn.setSelectedIndex(0);
     }
 
     @Override
