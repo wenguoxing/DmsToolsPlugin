@@ -1,12 +1,9 @@
 package cn.bugstack.guide.idea.plugin.listener;
 
 import cn.bugstack.guide.idea.plugin.ui.inner.SupportView;
-import com.intellij.icons.AllIcons.General;
 import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationAction;
-import com.intellij.notification.NotificationDisplayType;
-import com.intellij.notification.NotificationGroup;
-import com.intellij.notification.NotificationListener;
+import com.intellij.notification.NotificationGroupManager;
 import com.intellij.notification.NotificationType;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.application.ApplicationActivationListener;
@@ -34,11 +31,23 @@ public class AppActivationListener implements ApplicationActivationListener {
         if (System.currentTimeMillis() - lastNoticeTime < INTERVAL) {
             return;
         }
-        NotificationGroup group = new NotificationGroup("Easy Javadoc", NotificationDisplayType.BALLOON, true, null,
-                General.AddJdk);
-        Notification notification = group.createNotification(
-                "支持EasyJavadoc", "如果这款小而美的插件为您节约了不少时间，请支持一下开发者！",
-                NotificationType.INFORMATION, NotificationListener.URL_OPENING_LISTENER);
+
+        // 旧方法
+        //NotificationGroup group = new NotificationGroup("Easy Javadoc", NotificationDisplayType.BALLOON, true, null,
+        //        General.AddJdk);
+        //Notification notification = group.createNotification(
+        //        "支持EasyJavadoc", "如果这款小而美的插件为您节约了不少时间，请支持一下开发者！",
+        //        NotificationType.INFORMATION, NotificationListener.URL_OPENING_LISTENER);
+
+        //新方法 https://plugins.jetbrains.com/docs/intellij/notifications.html#got-it-notification
+        //Notification notification = NotificationGroupManager.getInstance()
+        //        .getNotificationGroup("CustomNotificationGroup")
+        //该方法也已过时
+        //        .createNotification("支持EasyJavadoc", "如果这款小而美的插件为您节约了不少时间，请支持一下开发者！",
+        //                NotificationType.INFORMATION, NotificationListener.URL_OPENING_LISTENER);
+        Notification notification = NotificationGroupManager.getInstance()
+                .getNotificationGroup("CustomNotificationGroup")
+                .createNotification("支持Javadoc","请支持一下开发者！", NotificationType.INFORMATION);
 
         // 去点star
         notification.addAction(new NotificationAction("✨ 去点star") {

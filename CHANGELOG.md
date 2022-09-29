@@ -2,6 +2,10 @@
 
 # DmsToolsPlugin Changelog
 
+## [1.3.1]
+### Changed
+- 添加了多项目选择
+
 ## [1.3.0]
 ### Changed
 - Update `platformVersion` to `2021.1.3` for compatibility with Apple M1
