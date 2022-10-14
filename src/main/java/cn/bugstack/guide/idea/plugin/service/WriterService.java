@@ -18,6 +18,13 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class WriterService {
 
+    /**
+     * write
+     *
+     * @param project    project
+     * @param psiElement psiElement
+     * @param comment    comment
+     */
     public void write(Project project, PsiElement psiElement, PsiDocComment comment) {
         try {
             WriteCommandAction.writeCommandAction(project).run(
@@ -48,6 +55,13 @@ public class WriterService {
         }
     }
 
+    /**
+     * write
+     *
+     * @param project project
+     * @param editor  editor
+     * @param text    text
+     */
     public void write(Project project, Editor editor, String text) {
         if (project == null || editor == null || StringUtils.isBlank(text)) {
             return;

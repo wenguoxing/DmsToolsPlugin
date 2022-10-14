@@ -28,7 +28,9 @@ import org.jetbrains.annotations.NotNull;
  */
 public class JavadocGenerateAction extends AnAction {
 
+    /** 生成注释格式服务 */
     private DocGeneratorService docGeneratorService = ServiceManager.getService(DocGeneratorService.class);
+    /** 写入注释服务 */
     private WriterService writerService = ServiceManager.getService(WriterService.class);
 
     /**
@@ -45,6 +47,11 @@ public class JavadocGenerateAction extends AnAction {
         connection.subscribe(ApplicationActivationListener.TOPIC, new AppActivationListener());
     }
 
+    /**
+     * actionPerformed
+     *
+     * @param e e
+     */
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
         Project project = e.getData(LangDataKeys.PROJECT);
@@ -58,14 +65,17 @@ public class JavadocGenerateAction extends AnAction {
             return;
         }
 
+        //生成注释
         String comment = docGeneratorService.generate(psiElement);
         if (StringUtils.isEmpty(comment)) {
             return;
         }
 
+        //获取注释
         PsiElementFactory factory = PsiElementFactory.SERVICE.getInstance(project);
         PsiDocComment psiDocComment = factory.createDocCommentFromText(comment);
 
+        //写入注释
         writerService.write(project, psiElement, psiDocComment);
     }
 }

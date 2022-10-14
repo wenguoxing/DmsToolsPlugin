@@ -8,7 +8,6 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.roots.ProjectFileIndex;
 import com.intellij.openapi.ui.DialogWrapper;
 import com.intellij.openapi.ui.Messages;
-import com.intellij.openapi.ui.ValidationInfo;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
 import org.jetbrains.annotations.NotNull;
@@ -21,6 +20,12 @@ import java.awt.event.ItemListener;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * DmsCpToolUI
+ *
+ * @author Administrator
+ * @date 2022/10/14
+ */
 public class DmsCpToolUI extends DialogWrapper {
     private JPanel contentPane;
     private JList listShow;
@@ -35,9 +40,14 @@ public class DmsCpToolUI extends DialogWrapper {
     private JButton btnFileSelect;
     private JComboBox comboBoxSvn;
     private JLabel labAllSvn;
+    private JRadioButton radioButtonCdist;
+    private JRadioButton radioButtonJava;
+    private JRadioButton radioButtonTact;
+    private JRadioButton radioButtonAplBase;
 
     private DefaultListModel listModel;
 
+    /** 自定义Action */
     private CustomOKAction okAction;
     private DialogWrapperExitAction exitAction;
 
@@ -46,6 +56,21 @@ public class DmsCpToolUI extends DialogWrapper {
     private VirtualFile virtualFile;
 
     private int projectType = 0;
+
+    /** apppath */
+    private String APPPATH = "";
+
+    /** WEBPATH */
+    private String WEBPATH = "";
+
+    /** DBBATCHPATH */
+    private String DBBATCHPATH = "";
+
+    /** APBATCHPATH */
+    private String APBATCHPATH = "";
+
+    /** RESOURCEPATH */
+    private String RESOURCEPATH = "";
 
     public DmsCpToolUI() {
         super(true);
@@ -81,20 +106,25 @@ public class DmsCpToolUI extends DialogWrapper {
      */
     public void initOther(){
 
+        //初始标题
         this.setTitleContext();
 
+        //读取资源
         MyBundle myBundle = MyBundle.getInstance();
+        //找到配置文件
         String iniFilePath = myBundle.getValue("INIFILEPATH");
         if (null != iniFilePath && !"".equals(iniFilePath)) {
             this.textFieldIniFile.setText(iniFilePath);
+            //读取配置文件
             List<String> datas = FileUtil.queryData(iniFilePath);
             this.listShow.setListData(datas.toArray());
             this.textFieldSvn.setText(datas.get(projectType));
 
-            //去重填充下拉框
+            //去重后,填充下拉框
             datas.stream().distinct().forEach(p -> this.comboBoxSvn.addItem(p));
         }
 
+        //显示项目
         this.textFieldProject.setText(project.getBasePath());
         this.listShow.setListData(
                 new String[]{project.toString(),
@@ -103,6 +133,7 @@ public class DmsCpToolUI extends DialogWrapper {
 
         //SVN选择
         this.btnSelect.addActionListener(e -> {
+            //自定义选择框
             FileChooserComponent component = FileChooserComponent.getInstance(project);
             VirtualFile baseDir = project.getBaseDir();
             VirtualFile virtualFile = component.showFolderSelectionDialog("选择SVN目录", baseDir, baseDir);
@@ -113,6 +144,7 @@ public class DmsCpToolUI extends DialogWrapper {
 
         //ini文件选择
         this.btnFileSelect.addActionListener(e -> {
+            //自定义选择框
             FileChooserComponent component = FileChooserComponent.getInstance(project);
             VirtualFile baseDir = project.getBaseDir();
             VirtualFile virtualFile = component.showFileSelectionDialog("选择配置文件", baseDir, baseDir);
@@ -133,22 +165,11 @@ public class DmsCpToolUI extends DialogWrapper {
         });
 
         // 添加条目选中状态改变的监听器
-        //comboBoxSvn.addItemListener(e -> {
-        //    // 只处理选中的状态
-        //    if (e.getStateChange() == ItemEvent.SELECTED) {
-        //        System.out.println("选中: " + e.getID() + " = " + e.getSource().toString());
-        //        System.out.println("选中: " + e.getItem().toString() + " = " + e.getItemSelectable().getSelectedObjects());
-        //        System.out.println("选中: " + comboBoxSvn.getSelectedIndex() + " = " + comboBoxSvn.getSelectedItem());
-        //    }
-        //});
-
-        // 添加条目选中状态改变的监听器
         comboBoxSvn.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 // 只处理选中的状态
                 if (e.getStateChange() == ItemEvent.SELECTED) {
-                    //System.out.println("选中: " + comboBoxSvn.getSelectedIndex() + " = " + comboBoxSvn.getSelectedItem());
                     textFieldSvn.setText(comboBoxSvn.getSelectedItem().toString());
                 }
             }
@@ -156,6 +177,17 @@ public class DmsCpToolUI extends DialogWrapper {
 
         // 设置默认选中的条目
         //comboBoxSvn.setSelectedIndex(0);
+
+        //单选框组
+        ButtonGroup btnGroupSys = new ButtonGroup();
+        btnGroupSys.add(radioButtonCdist);
+        btnGroupSys.add(radioButtonTact);
+        radioButtonCdist.setSelected(true);
+
+        ButtonGroup btnGroupSubSys = new ButtonGroup();
+        btnGroupSubSys.add(radioButtonJava);
+        btnGroupSubSys.add(radioButtonAplBase);
+        radioButtonJava.setSelected(true);
     }
 
     @Override
@@ -165,26 +197,23 @@ public class DmsCpToolUI extends DialogWrapper {
     }
 
     /**
-     * 校验数据
-     * @return 通过必须返回null，不通过返回一个 ValidationInfo 信息
+     * getRadioSelectText
+     *
+     * @param radioButtons radioButtons
+     * @return {@link String}
      */
-    @Nullable
-    @Override
-    protected ValidationInfo doValidate() {
-        //String text = inputTextField.getText();
-        //if(StringUtils.isNotBlank(text)) {
-        //    return null;
-        //} else {
-        //    return new ValidationInfo("校验不通过");
-        //}
-
-        return null;
+    protected void getRadioSelectText(List<JRadioButton> radioButtons) {
+        radioButtons.stream().forEach(element->{
+            if(element.getModel().isSelected()){
+                this.textFieldSvn.setText(element.getText());
+            }
+        });
     }
 
     /**
      * doCopy
      */
-    public void doCopy(){
+    public void doCopyJava(){
         try {
             String srcFileFullPath = psiFile.getVirtualFile().getPath();
             String srcFileName = psiFile.getVirtualFile().getName();
@@ -195,7 +224,7 @@ public class DmsCpToolUI extends DialogWrapper {
             idx = srcFilePath.indexOf(srcFileName);
             String srcPath = srcFilePath.substring(0, idx - 1);
 
-            String desPath = this.textFieldSvn.getText() + "/" + DmsToolsConstant.APPATH + "/" + srcPath;
+            String desPath = this.textFieldSvn.getText() + "/" + this.APPPATH + "/" + srcPath;
             String desFileFullPath = desPath + "/" + srcFileName;
 
             //日志
@@ -229,7 +258,7 @@ public class DmsCpToolUI extends DialogWrapper {
             idx = srcFilePath.indexOf(srcFileName);
             String srcPath = srcFilePath.substring(0, idx - 1);
 
-            String desPath = this.textFieldSvn.getText() + "/" + DmsToolsConstant.WEBPATH + "/" + srcPath;
+            String desPath = this.textFieldSvn.getText() + "/" + this.WEBPATH + "/" + srcPath;
             String desFileFullPath = desPath + "/" + srcFileName;
 
             //日志
@@ -252,7 +281,7 @@ public class DmsCpToolUI extends DialogWrapper {
     /**
      * doCopyDB
      */
-    public void doCopyDB(){
+    public void doCopyDBBatch(){
         try {
             String srcFileFullPath = psiFile.getVirtualFile().getPath();
             String srcFileName = psiFile.getVirtualFile().getName();
@@ -263,7 +292,7 @@ public class DmsCpToolUI extends DialogWrapper {
             idx = srcFilePath.indexOf(srcFileName);
             String srcPath = srcFilePath.substring(0, idx - 1);
 
-            String desPath = this.textFieldSvn.getText() + "/" + DmsToolsConstant.DBBATCHPATH + "/" + srcPath;
+            String desPath = this.textFieldSvn.getText() + "/" + this.DBBATCHPATH + "/" + srcPath;
             String desFileFullPath = desPath + "/" + srcFileName;
 
             //日志
@@ -297,16 +326,9 @@ public class DmsCpToolUI extends DialogWrapper {
             idx = srcFilePath.indexOf(srcFileName);
             String srcPath = srcFilePath.substring(0, idx - 1);
 
+            //获取当前Module
             ProjectFileIndex fileIndex = ProjectFileIndex.getInstance(project);
-            //Messages.showInfoMessage("Module: " + fileIndex.getModuleForFile(file) + "\n" +
-            //                "Is In Source: " + fileIndex.isInSource(file) + "\n" +
-            //                "Module content root: " + fileIndex.getContentRootForFile(file) + "\n" +
-            //                "Source root: " + fileIndex.getSourceRootForFile(file) + "\n" +
-            //                "Is library file: " + fileIndex.isLibraryClassFile(file) + "\n" +
-            //                "Is in library classes: " + fileIndex.isInLibraryClasses(file) +
-            //                ", Is in library source: " + fileIndex.isInLibrarySource(file),
-            //        "Main File Info for" + file.getName());
-            String desPath = this.textFieldSvn.getText() + "/" + DmsToolsConstant.APBATCHPATH + "/" + fileIndex.getModuleForFile(virtualFile).getName() + "/" + "src/" + srcPath;
+            String desPath = this.textFieldSvn.getText() + "/" + this.APBATCHPATH + "/" + fileIndex.getModuleForFile(virtualFile).getName() + "/" + "src/" + srcPath;
             String desFileFullPath = desPath + "/" + srcFileName;
 
             //日志
@@ -340,7 +362,7 @@ public class DmsCpToolUI extends DialogWrapper {
             idx = srcFilePath.indexOf(srcFileName);
             String srcPath = srcFilePath.substring(0, idx - 1);
 
-            String desPath = this.textFieldSvn.getText() + "/" + DmsToolsConstant.RESOURCEPATH + "/" + srcPath;
+            String desPath = this.textFieldSvn.getText() + "/" + this.RESOURCEPATH + "/" + srcPath;
             String desFileFullPath = desPath + "/" + srcFileName;
 
             //日志
@@ -362,22 +384,66 @@ public class DmsCpToolUI extends DialogWrapper {
     }
 
     /**
+     * getAppPath
+     *
+     * @return {@link String}
+     */
+    private void getAppPath() {
+        boolean bolCdist = radioButtonCdist.isSelected();
+        boolean bolTact = radioButtonTact.isSelected();
+        boolean bolJava = radioButtonJava.isSelected();
+        boolean bolAplBase = radioButtonAplBase.isSelected();
+
+        if (bolCdist && bolJava) {
+            this.APPPATH = DmsToolsConstant.APPATH_CDIST;
+        } else if (bolCdist && bolAplBase) {
+            this.APPPATH = DmsToolsConstant.APLBASEPATH_CDIST;
+        } else if (bolTact && bolJava) {
+            this.APPPATH = DmsToolsConstant.APPATH_TACT;
+        } else if (bolTact && bolAplBase) {
+            this.APPPATH = DmsToolsConstant.APLBASEPATH_TACT;
+        }
+    }
+
+    /**
+     * getOtherPath
+     *
+     * @return {@link String}
+     */
+    private void getOtherPath() {
+        boolean bolCdist = radioButtonCdist.isSelected();
+        boolean bolTact = radioButtonTact.isSelected();
+
+        if (bolCdist) {
+            this.WEBPATH = DmsToolsConstant.WEBPATH_CDIST;
+            this.DBBATCHPATH = DmsToolsConstant.DBBATCHPATH_CDIST;
+            this.APBATCHPATH = DmsToolsConstant.APBATCHPATH_CDIST;
+            this.RESOURCEPATH = DmsToolsConstant.RESOURCEPATH_CDIST;
+        } else if (bolTact) {
+            this.WEBPATH = DmsToolsConstant.WEBPATH_TACT;
+            this.DBBATCHPATH = DmsToolsConstant.DBBATCHPATH_TACT;
+            this.APBATCHPATH = DmsToolsConstant.APBATCHPATH_TACT;
+            this.RESOURCEPATH = DmsToolsConstant.RESOURCEPATH_TACT;
+        }
+    }
+
+    /**
      * setTitleContext
      */
     protected void setTitleContext() {
         String title = "";
         switch (projectType) {
             case 0:
-                title = "AP拷贝";
+                title = "IZJava拷贝";
                 break;
             case 1:
-                title = "Web拷贝";
+                title = "IZWeb拷贝";
                 break;
             case 2:
-                title = "Batch拷贝";
+                title = "DB-Batch拷贝";
                 break;
             case 3:
-                title = "ApBatch拷贝";
+                title = "Ap-Batch拷贝";
                 break;
             case 4:
                 title = "Resource拷贝";
@@ -389,12 +455,15 @@ public class DmsCpToolUI extends DialogWrapper {
 
     /**
      * 覆盖默认的ok/cancel按钮
+     *
      * @return
      */
     @NotNull
     @Override
     protected Action[] createActions() {
+        //定义取消按键
         exitAction = new DialogWrapperExitAction("取消", CANCEL_EXIT_CODE);
+        //定义确定按钮
         okAction = new CustomOKAction();
         // 设置默认的焦点按钮
         okAction.putValue(DialogWrapper.DEFAULT_ACTION, true);
@@ -412,15 +481,21 @@ public class DmsCpToolUI extends DialogWrapper {
 
         @Override
         protected void doAction(ActionEvent e) {
+
+            //获取app路径
+            getAppPath();
+            //获取其它路径
+            getOtherPath();
+
             switch (projectType) {
                 case 0:
-                    doCopy();
+                    doCopyJava();
                     break;
                 case 1:
                     doCopyWeb();
                     break;
                 case 2:
-                    doCopyDB();
+                    doCopyDBBatch();
                     break;
                 case 3:
                     doCopyAPBatch();
