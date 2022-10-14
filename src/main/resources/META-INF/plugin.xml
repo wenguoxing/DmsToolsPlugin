@@ -15,16 +15,24 @@
     </description>
 
     <change-notes><![CDATA[
+        <h3>v1.3.2 update</h3>
+        <ul>
+            <li>add system、subsystem</li>
+            <li>添加了系统、子系统的选择.</li>
+        </ul>
+
         <h3>v1.3.1 update</h3>
         <ul>
             <li>add @link label in @return doc of the method javadoc</li>
             <li>添加了多项目选择.</li>
         </ul>
+
         <h3>v1.3.0 update</h3>
         <ul>
             <li>add @link label in @return doc of the method javadoc</li>
             <li>添加一些功能.</li>
         </ul>
+
         <h3>v1.2.0 first version</h3>
         <ul>
             <li>初始提交.</li>

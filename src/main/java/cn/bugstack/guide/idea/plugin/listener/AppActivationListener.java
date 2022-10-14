@@ -33,7 +33,7 @@ public class AppActivationListener implements ApplicationActivationListener {
 
         //生成通知
         Notification notification = NotificationGroupManager.getInstance()
-                .getNotificationGroup("CustomNotificationGroup")
+                .getNotificationGroup("CustomNotificationGroup") //plugin.xml中进行配置
                 .createNotification("支持该插件","请支持一下开发者！", NotificationType.INFORMATION);
 
         // 去点star
