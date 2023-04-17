@@ -57,7 +57,7 @@ public class ParamsVariableGenerator implements VariableGenerator {
             PsiElement eleParamDesc = psiDocTag.getDataElements()[1];
             String desc = eleParamDesc.getText();
             if (StringUtils.isNotEmpty(desc)) {
-                // 如果已经存在注释则直接返�?
+                // 如果已经存在注释则直接返
                 paramGroupList.add(new ParamGroup(paramName, desc));
             } else {
                 // 不存在注释则翻译
@@ -78,7 +78,7 @@ public class ParamsVariableGenerator implements VariableGenerator {
     }
 
     /**
-     * 参数名注释组�?
+     * 参数名注释组
      */
     static class ParamGroup {
         private String param;
